@@ -38,7 +38,11 @@ const User = sequelize.define('User', {
     status: {
         type: DataTypes.ENUM('active', 'inactive', 'suspended'),
         defaultValue: 'active'
-    }
+    },
+    photoURL: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
 }, {
     timestamps: true
 });

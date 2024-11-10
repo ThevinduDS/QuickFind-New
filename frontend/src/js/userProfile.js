@@ -1,4 +1,10 @@
-const userId = '123e4567-e89b-12d3-a456-426614174000'; // Ensure this is the correct user ID
+var userData = localStorage.getItem('user');
+var userDeatails = JSON.parse(userData);
+const userId = userDeatails.id; // user id
+
+// Load user data on window load
+window.onload = fetchUserProfile;
+
 
 async function fetchUserProfile() {
     try {
@@ -19,50 +25,59 @@ async function fetchUserProfile() {
 
             // Display the profile image if available
             const profileImage = document.querySelector('.profile-image');
+            console.log('User photoURL:', user);
+
             if (profileImage) {
-                profileImage.src = user.photoURL || "https://www.w3schools.com/w3images/avatar2.png";
-                profileImage.alt = `${user.firstName} ${user.lastName}'s Profile Image`;
+                if (user.photoURL) {
+                    profileImage.src = user.photoURL;
+                    profileImage.alt = `${user.firstName} ${user.lastName}'s Profile Image`;
+                } else {
+                    profileImage.src = "https://www.w3schools.com/w3images/avatar2.png";
+                    profileImage.alt = `${user.firstName} ${user.lastName}'s Profile Image`;
+                }
             } else {
                 console.warn("Element with class 'profile-image' not found.");
             }
+            // profileImage.src = user.photoURL || "https://www.w3schools.com/w3images/avatar2.png";
+            // profileImage.alt = `${user.firstName} ${user.lastName}'s Profile Image`;
 
             // Check if the form element exists before adding the event listener
-            const profileForm = document.querySelector("#profileForm");
-            if (profileForm) {
-                profileForm.addEventListener("submit", async function (event) {
-                    event.preventDefault(); // Prevent the default form submission
+            // const profileForm = document.querySelector("#profileForm");
+            // if (profileForm) {
+            //     profileForm.addEventListener("submit", async function (event) {
+            //         event.preventDefault(); // Prevent the default form submission
 
-                    const formData = new FormData(); // Use FormData to handle files and text data
+            //         const formData = new FormData(); // Use FormData to handle files and text data
 
-                    // Add each selected image file to the FormData object
-                    const imageFiles = document.querySelector("#profileImage").files;
-                    for (let i = 0; i < imageFiles.length; i++) {
-                        formData.append("profileForm", imageFiles[i]);
-                    }
+            //         // Add each selected image file to the FormData object
+            //         const imageFiles = document.querySelector("#profileImage").files;
+            //         for (let i = 0; i < imageFiles.length; i++) {
+            //             formData.append("profileForm", imageFiles[i]);
+            //         }
 
-                    try {
-                        const response = await fetch('http://localhost:3000/api/editProfile/create', {
-                            method: 'POST',
-                            body: formData // Pass FormData directly
-                        });
+            //         try {
+            //             const response = await fetch('http://localhost:3000/api/editProfile/create', {
+            //                 method: 'POST',
+            //                 body: formData // Pass FormData directly
+            //             });
 
-                        if (!response.ok) throw new Error(`Error: ${response.statusText}`);
+            //             if (!response.ok) throw new Error(`Error: ${response.statusText}`);
 
-                        const result = await response.json(); // Parse the JSON response
-                        console.log(result); // Log the result for debugging
+            //             const result = await response.json(); // Parse the JSON response
+            //             console.log(result); // Log the result for debugging
 
-                        if (result.success) {
-                            alert("Images uploaded successfully!");
-                        } else {
-                            alert("Failed to upload images.");
-                        }
-                    } catch (error) {
-                        console.error('Submission error:', error); // Log any errors
-                    }
-                });
-            } else {
-                console.warn("Form element with id 'profileForm' not found.");
-            }
+            //             if (result.success) {
+            //                 alert("Images uploaded successfully!");
+            //             } else {
+            //                 alert("Failed to upload images.");
+            //             }
+            //         } catch (error) {
+            //             console.error('Submission error:', error); // Log any errors
+            //         }
+            //     });
+            // } else {
+            //     console.warn("Form element with id 'profileForm' not found.");
+            // }
         } else {
             console.error('User data could not be retrieved.');
         }
@@ -71,5 +86,3 @@ async function fetchUserProfile() {
     }
 }
 
-// Load user data on window load
-window.onload = fetchUserProfile;

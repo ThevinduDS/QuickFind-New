@@ -8,8 +8,7 @@ const sequelize = new Sequelize({
     port: 5432,
     database: 'quickfind_db',
     username: 'postgres',
-
-    password: 'Ni@1230Dissa',
+    password: '', //Add user password after pull 
 
     logging: false,
 });
