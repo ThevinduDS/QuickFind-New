@@ -26,12 +26,10 @@
             from {
                 opacity: 0;
             }
-
             to {
                 opacity: 1;
             }
         }
-
         .animate-fadeIn {
             animation: fadeIn 0.5s ease-in-out;
         }
@@ -61,8 +59,7 @@
             </div>
 
             <div class="mb-6">
-                <label for="offeringCategory" class="block text-sm font-medium text-gray-700 mb-2">Offering
-                    Category</label>
+                <label for="offeringCategory" class="block text-sm font-medium text-gray-700 mb-2">Offering Category</label>
                 <select id="offeringCategory" name="offeringCategory"
                     class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                     required>
@@ -75,8 +72,7 @@
             </div>
 
             <div class="mb-6">
-                <label for="offeringDescriptio.n" class="block text-sm font-medium text-gray-700 mb-2">Offering
-                    Description</label>
+                <label for="offeringDescription" class="block text-sm font-medium text-gray-700 mb-2">Offering Description</label>
                 <textarea id="offeringDescription" name="offeringDescription" rows="4"
                     class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                     required></textarea>
@@ -90,8 +86,7 @@
             </div>
 
             <div class="mb-6">
-                <label for="offeringLocation" class="block text-sm font-medium text-gray-700 mb-2">Offering
-                    Location</label>
+                <label for="offeringLocation" class="block text-sm font-medium text-gray-700 mb-2">Offering Location</label>
                 <input type="text" id="offeringLocation" name="offeringLocation"
                     class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                     required>
@@ -102,50 +97,26 @@
                 <input type="number" id="serviceArea" name="serviceArea" min="1" step="1"
                     class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                     required>
-            </div>            
+            </div>  
 
+            <!-- New Contact Fields -->
             <div class="mb-6">
-                <label class="block text-sm font-medium text-gray-700 mb-2">Availability</label>
-                <div class="flex flex-wrap gap-4">
-                    <label class="inline-flex items-center">
-                        <input type="checkbox" name="availability" value="weekdays" class="form-checkbox text-primary">
-                        <span class="ml-2">Weekdays</span>
-                    </label>
-                    <label class="inline-flex items-center">
-                        <input type="checkbox" name="availability" value="weekends" class="form-checkbox text-primary">
-                        <span class="ml-2">Weekends</span>
-                    </label>
-                    <label class="inline-flex items-center">
-                        <input type="checkbox" name="availability" value="evenings" class="form-checkbox text-primary">
-                        <span class="ml-2">Evenings</span>
-                    </label>
-                </div>
-            </div>
-
-            <div class="mb-6">
-                <label for="offeringImages" class="block text-sm font-medium text-gray-700 mb-2">Upload Images</label>
-                <input type="file" id="offeringImages" name="offeringImages" accept="image/*" multiple
-                    class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary">
-            </div>
-
-            
-
-            <div class="mb-6">
-                <label for="listingFee" class="block text-sm font-medium text-gray-700 mb-2">Listing Fee</label>
-                <select id="listingFee" name="listingFee"
+                <label for="contactNumber" class="block text-sm font-medium text-gray-700 mb-2">Contact Number</label>
+                <input type="tel" id="contactNumber" name="contactNumber"
                     class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                     required>
-                    <option value="500">500 LKR</option>
-                    <option value="1000">1000 LKR</option>
-                    <option value="1500">1500 LKR</option>
-                    <option value="2000">2000 LKR</option>
-                </select>
+            </div>
+
+            <div class="mb-6">
+                <label for="contactEmail" class="block text-sm font-medium text-gray-700 mb-2">Contact Email</label>
+                <input type="email" id="contactEmail" name="contactEmail"
+                    class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                    required>
             </div>
 
             <div class="text-center">
                 <button type="submit"
-                    class="bg-primary text-white px-6 py-3 rounded-md hover:bg-primary-light transition duration-300">Post
-                    Advertisement</button>
+                    class="bg-primary text-white px-6 py-3 rounded-md hover:bg-primary-light transition duration-300">Post Advertisement</button>
             </div>
         </form>
     </main>
@@ -153,43 +124,7 @@
     <footer class="bg-primary text-white py-12 mt-12">
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div>
-                    <h4 class="text-xl font-bold mb-4">QuickFind.LK</h4>
-                    <p class="text-sm">Connecting you with trusted service providers across Sri Lanka.</p>
-                </div>
-                <div>
-                    <h5 class="font-bold mb-4">Quick Links</h5>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="hover:text-primary-light transition duration-300">Home</a></li>
-                        <li><a href="#" class="hover:text-primary-light transition duration-300">About Us</a></li>
-                        <li><a href="#" class="hover:text-primary-light transition duration-300">Offerings</a></li>
-                        <li><a href="#" class="hover:text-primary-light transition duration-300">Contact</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h5 class="font-bold mb-4">For Providers</h5>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="hover:text-primary-light transition duration-300">Join as a Provider</a>
-                        </li>
-                        <li><a href="#" class="hover:text-primary-light transition duration-300">Provider Dashboard</a>
-                        </li>
-                        <li><a href="#" class="hover:text-primary-light transition duration-300">Provider Guidelines</a>
-                        </li>
-                    </ul>
-                </div>
-                <div>
-                    <h5 class="font-bold mb-4">Connect With Us</h5>
-                    <div class="flex space-x-4">
-                        <a href="#" class="hover:text-primary-light transition duration-300"><i
-                                class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="hover:text-primary-light transition duration-300"><i
-                                class="fab fa-twitter"></i></a>
-                        <a href="#" class="hover:text-primary-light transition duration-300"><i
-                                class="fab fa-instagram"></i></a>
-                        <a href="#" class="hover:text-primary-light transition duration-300"><i
-                                class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
+                <!-- Footer Content -->
             </div>
             <div class="mt-8 text-center text-sm text-gray-300">
                 &copy; 2024 QuickFind.LK. All Rights Reserved.

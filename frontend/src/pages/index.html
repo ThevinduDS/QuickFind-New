@@ -61,14 +61,25 @@
 <body class="bg-background font-sans">
   <header class="bg-primary text-white p-4 animate-fadeIn">
     <div class="container mx-auto flex justify-between items-center">
+      <!-- Logo -->
       <img src="../icons/quickfind logo .png" style="height:50px;" alt="logo">
-      <nav>
-        <a href="#" class="hover:text-primary-light transition duration-300 mr-4">How It Works</a>
-        <a href="#" class="hover:text-primary-light transition duration-300 mr-4">For Providers</a>
-        <a href="/signin" class="hover:text-primary-light transition duration-300">Login / Sign Up</a>
+
+      <!-- Navigation Items (Inline) -->
+      <nav class="flex items-center space-x-6">
+        <a href="#" class="hover:text-primary-light transition duration-300">How It Works</a>
+        <a href="#" class="hover:text-primary-light transition duration-300">For Providers</a>
+
+        <!-- Profile Button with Rounded Display Picture -->
+        <a href="/profile" class="flex items-center space-x-2 hover:text-primary-light transition duration-300">
+          <!-- Placeholder for Display Picture -->
+          <span>Profile</span>
+
+          <img src="path/to/profile-picture.jpg" alt="Profile Picture" class="w-8 h-8 rounded-full border">
+        </a>
       </nav>
     </div>
   </header>
+
 
   <main class="container mx-auto mt-8 px-4">
 
@@ -123,6 +134,8 @@
         <!-- Provider cards will be dynamically inserted here by JavaScript -->
       </div>
     </section>
+
+    <button href="./viewProfile.html" ></button>
 
 
 

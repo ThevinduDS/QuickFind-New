@@ -32,7 +32,16 @@ document.addEventListener('DOMContentLoaded', function() {
                         // text: "That thing is still around?",
                         icon: "success"
                       });
-                    window.location.href = 'index.html';
+
+
+                    if(data.user.role == "customer"){
+window.location.href = '../index.html'
+                    }else if(data.user.role == "service_provider"){
+                        window.location.href = '../provider-dashboard.html'
+
+                    }
+
+
                 } else {
                     // alert(data.message || 'Login failed');
                     Swal.fire({
