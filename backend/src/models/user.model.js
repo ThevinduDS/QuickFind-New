@@ -1,4 +1,4 @@
-// backend/src/models/user.model.js
+// user.model.js
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 const bcrypt = require('bcrypt');
@@ -20,9 +20,7 @@ const User = sequelize.define('User', {
     email: {
         type: DataTypes.STRING,
         unique: true,
-        validate: {
-            isEmail: true
-        }
+        validate: { isEmail: true }
     },
     phone: {
         type: DataTypes.STRING,

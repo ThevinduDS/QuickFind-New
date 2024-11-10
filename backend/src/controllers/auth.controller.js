@@ -1,20 +1,23 @@
-// backend/src/controllers/auth.controller.js
-require('dotenv').config();  // Ensure this is at the top to load environment variables
+require('dotenv').config();
 const jwt = require('jsonwebtoken');
 const { Op } = require('sequelize');
 const bcrypt = require('bcrypt');
-const User = require('../models/user.model');  // Ensure the path is correct
+const User = require('../models/user.model');
+const config = require('../config/config');  // Import config to access JWT_SECRET
 
-// Registration function
+// Check if JWT_SECRET is configured
+if (!config.jwt.secret) {
+    console.error('JWT_SECRET is missing in config');
+    process.exit(1); // Exit if JWT secret is missing
+}
+
 exports.register = async (req, res) => {
     try {
         const { firstName, lastName, email, phone, password, role } = req.body;
 
-        // Log the incoming request body for debugging
-        console.log('Registration request body:', req.body);
-        console.log('JWT_SECRET:', process.env.JWT_SECRET); // Log the JWT secret
+        console.log('Registration attempt:', { email, phone });
 
-        // Check if the user already exists
+        // Check for existing user by email or phone
         const existingUser = await User.findOne({
             where: {
                 [Op.or]: [{ email }, { phone }]
@@ -27,24 +30,26 @@ exports.register = async (req, res) => {
             });
         }
 
-        // Create a new user
+        // Hash password and create user
+        const hashedPassword = await bcrypt.hash(password, 10);
         const user = await User.create({
             firstName,
             lastName,
             email,
             phone,
-            password: await bcrypt.hash(password, 10),  // Hash the password
-            role: role || 'customer'  // Default to 'customer' if no role is provided
+            password: hashedPassword,
+            role: role || 'customer'
         });
 
-        // Generate a JWT token
+        // Generate token
         const token = jwt.sign(
             { id: user.id, role: user.role },
-            process.env.JWT_SECRET,  // Ensure this is correctly set
+            config.jwt.secret,
             { expiresIn: '24h' }
         );
 
-        // Respond with success
+        console.log('User registered:', { id: user.id, email: user.email });
+
         res.status(201).json({
             message: 'Registration successful',
             token,
@@ -67,32 +72,27 @@ exports.login = async (req, res) => {
     try {
         const { email, password } = req.body;
 
-        // Log the incoming request body for debugging
-        console.log('Login request body:', req.body);
-
         // Find the user by email
-        const user = await User.findOne({
-            where: { email }
-        });
-
+        const user = await User.findOne({ where: { email } });
         if (!user) {
-            return res.status(401).json({ message: 'Invalid credentials' });
+            return res.status(401).json({ message: 'Invalid Email' });
         }
 
         // Check if the password is valid
         const isValidPassword = await bcrypt.compare(password, user.password);
         if (!isValidPassword) {
-            return res.status(401).json({ message: 'Invalid credentials' });
+            return res.status(401).json({ message: 'Invalid Password' });
         }
 
         // Generate a JWT token
         const token = jwt.sign(
             { id: user.id, role: user.role },
-            process.env.JWT_SECRET,  // Ensure this is correctly set
+            config.jwt.secret,
             { expiresIn: '24h' }
         );
 
-        // Respond with success
+        // console.log('User logged in:', { id: user.id, email: user.email });
+
         res.json({
             message: 'Login successful',
             token,
@@ -109,3 +109,4 @@ exports.login = async (req, res) => {
         res.status(500).json({ message: 'Error during login' });
     }
 };
+
