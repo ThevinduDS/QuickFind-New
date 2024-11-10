@@ -12,6 +12,8 @@ const categoryRoutes = require('./routes/category.routes');
 const offeringRoutes = require('./routes/offering.routes');
 const favouriteRoutes = require('./routes/favourite.routes')
 const homePageRoutes = require("./routes/homePage.routes");
+const viewprofileRoutes = require('./routes/viewprofile.routes');
+const reviewRoutes = require('./routes/review.routes');
 
 
 require('./models/associations');
@@ -35,6 +37,9 @@ app.use('/api/offering', offeringRoutes);
 app.use('/api', serviceRoutes); // Route for service-related requests
 app.use('/api/favourite', favouriteRoutes);
 app.use("/api/homepage", homePageRoutes);
+app.use('/api/viewprofile', viewprofileRoutes);
+app.use('/api/review', reviewRoutes);
+
 
 
 // Example route
