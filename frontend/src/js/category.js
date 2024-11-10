@@ -112,7 +112,12 @@ async function addFavourite(serviceId) {
     const userId = '0bbf44ea-f93e-4c8f-8b2c-d9c6a37a303d'; // Dynamically retrieve userId
 
     if (!userId) {
-        alert('Please log in to add a favorite');
+         // alert('Please log in to add a favorite');
+         Swal.fire({
+            title: "Login failed!",
+            text: "Please log in to add a favorite",
+            icon: "warning"
+          });
         return;
     }
 
@@ -131,11 +136,21 @@ async function addFavourite(serviceId) {
 
         const newFavourite = await response.json();
         console.log('Added favourite:', newFavourite);
-        alert("Successfully Added to Favourites!");
+        // alert("Successfully Added to Favourites!");
+        Swal.fire({
+            title: "Successfully Added to Favourites!",
+            // text: data.message,
+            icon: "success"
+          });
 
 
     } catch (error) {
         console.error('Failed to add favourite:', error);
-        alert("Failed to add favourite")
+        // alert("Failed to add favourite")
+        Swal.fire({
+            title: "Failed to add favourite",
+            // text: data.message,
+            icon: "warning"
+          });
     }
 }
