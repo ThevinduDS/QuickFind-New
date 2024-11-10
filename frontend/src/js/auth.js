@@ -26,8 +26,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (response.ok) {
                     localStorage.setItem('token', data.token);
                     localStorage.setItem('user', JSON.stringify(data.user));
+                    // alert(JSON.stringify(data));
                     alert('Login successful!');
-                    window.location.href = 'index.html';
+                    if(data.user.role == "customer"){
+window.location.href = '../index.html'
+                    }else if(data.user.role == "service_provider"){
+                        window.location.href = '../provider-dashboard.html'
+
+                    }
+
                 } else {
                     alert(data.message || 'Login failed');
                 }
