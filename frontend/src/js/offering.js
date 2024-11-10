@@ -1,6 +1,10 @@
 document.querySelector("#offeringForm").addEventListener("submit", async function (event) {
   event.preventDefault(); // Prevent the default form submission
 
+  var userData = localStorage.getItem('user');
+var userDeatails = JSON.parse(userData);
+const userId = userDeatails.id; // user id
+
   const formData = new FormData(); // Use FormData to handle files and text data
 
   formData.append("offeringTitle", document.querySelector("#offeringTitle")?.value || "");
@@ -11,6 +15,7 @@ document.querySelector("#offeringForm").addEventListener("submit", async functio
   formData.append("serviceArea", document.querySelector("#serviceArea")?.value || "");
   formData.append("listingFee", document.querySelector("#listingFee")?.value || "");
   formData.append("availability", JSON.stringify(Array.from(document.querySelectorAll("input[name='availability']:checked")).map(option => option.value)));
+  formData.append("providerId", userId)
 
   // Add each selected image file to the FormData object
   const imageFiles = document.querySelector("#offeringImages").files;

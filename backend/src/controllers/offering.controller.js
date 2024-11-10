@@ -13,10 +13,11 @@ const createOffering = async (req, res) => {
           offeringLocation,
           serviceArea,
           availability,
-          listingFee
+          listingFee,
+          providerId
       } = req.body;
 
-      const providerId = "5c8119f4-459e-4fea-ab3c-72ece7ad8984"; // Static provider ID for testing (UUID)
+    //   const  = "5c8119f4-459e-4fea-ab3c-72ece7ad8984"; // Static provider ID for testing (UUID)
 
       // Ensure offeringCategory is an integer
       if (isNaN(offeringCategory)) {

@@ -43,22 +43,25 @@
         <!-- Profile Header -->
         <div class="bg-white rounded-lg shadow-md p-6 mb-6">
             <div class="flex flex-col md:flex-row items-start md:items-center gap-6">
-                <img src="../icons/profileImage.jpg" alt="Provider Profile" class="rounded-full w-32 h-32 object-cover border-2 border-primary">
+                <img src="../icons/profileImage.jpg" alt="Provider Profile"
+                    class="rounded-full w-32 h-32 object-cover border-2 border-primary">
                 <div class="flex-grow">
-                    <h1 class="text-3xl font-bold text-primary mb-2">John's Electrical Services</h1>
+                    <h1 id="profile-name" class="text-3xl font-bold text-primary mb-2">Loading...</h1>
                     <div class="flex items-center mb-2">
                         <div class="text-yellow-400 mr-2">★★★★★</div>
-                        <span class="text-text-secondary">(4.8 / 5 based on 50 reviews)</span>
+                        <span id="profile-rating" class="text-text-secondary">(Loading...)</span>
                     </div>
                     <p class="text-text-secondary mb-2">
                         <span class="material-icons text-sm align-middle mr-1">location_on</span>
-                        Colombo, Sri Lanka
+                        <span id="profile-location">Loading location...</span>
                     </p>
                     <div class="flex gap-4 mt-4">
-                        <button class="bg-primary text-white px-6 py-2 rounded-full hover:bg-primary-light transition duration-300">
+                        <button
+                            class="bg-primary text-white px-6 py-2 rounded-full hover:bg-primary-light transition duration-300">
                             Message
                         </button>
-                        <button class="border border-primary text-primary px-6 py-2 rounded-full hover:bg-primary hover:text-white transition duration-300">
+                        <button
+                            class="border border-primary text-primary px-6 py-2 rounded-full hover:bg-primary hover:text-white transition duration-300">
                             <span class="material-icons text-sm align-middle mr-1">favorite_border</span>
                             Add to Favourite
                         </button>
@@ -74,54 +77,44 @@
                 <!-- About Section -->
                 <div class="bg-white rounded-lg shadow-md p-6">
                     <h2 class="text-xl font-bold text-primary mb-4">About</h2>
-                    <p class="text-text-secondary">Professional electrical services with over 15 years of experience. Specializing in residential and commercial electrical installations, repairs, and maintenance. Licensed and insured for your peace of mind.</p>
+                    <p id="description" class="text-text-secondary">Professional electrical services with over 15 years of experience.
+                        Specializing in residential and commercial electrical installations, repairs, and maintenance.
+                        Licensed and insured for your peace of mind.</p>
                 </div>
 
                 <!-- Services Offered Section -->
-                <div class="bg-white rounded-lg shadow-md p-6">
+
+                <div id="services-offered" class="bg-white rounded-lg shadow-md p-6">
                     <h2 class="text-xl font-bold text-primary mb-4">Services Offered</h2>
                     <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <!-- JavaScript will inject services here -->
                         <li class="flex items-center text-text-secondary">
                             <span class="material-icons text-primary mr-2">check_circle</span>
                             Electrical Installation
                         </li>
-                        <li class="flex items-center text-text-secondary">
-                            <span class="material-icons text-primary mr-2">check_circle</span>
-                            Wiring Repair
-                        </li>
-                        <li class="flex items-center text-text-secondary">
-                            <span class="material-icons text-primary mr-2">check_circle</span>
-                            Emergency Services
-                        </li>
-                        <li class="flex items-center text-text-secondary">
-                            <span class="material-icons text-primary mr-2">check_circle</span>
-                            Safety Inspections
-                        </li>
                     </ul>
                 </div>
 
+
                 <!-- Reviews Section -->
                 <div class="bg-white rounded-lg shadow-md p-6">
-                    <h2 class="text-xl font-bold text-primary mb-4">Reviews</h2>
-                    <div class="space-y-4">
-                        <!-- Review Item -->
-                        <div class="border-b pb-4">
-                            <div class="flex items-center mb-2">
-                                <div class="text-yellow-400 mr-2">★★★★★</div>
-                                <span class="font-medium">Sarah M.</span>
-                                <span class="text-text-secondary ml-2">1 week ago</span>
-                            </div>
-                            <p class="text-text-secondary">Excellent service! John was professional, punctual, and solved our electrical issues quickly.</p>
-                        </div>
-                        <div class="border-b pb-4">
-                            <div class="flex items-center mb-2">
-                                <div class="text-yellow-400 mr-2">★★★★★</div>
-                                <span class="font-medium">Michael T.</span>
-                                <span class="text-text-secondary ml-2">2 weeks ago</span>
-                            </div>
-                            <p class="text-text-secondary">Great experience, very reliable and knowledgeable!</p>
-                        </div>
-                        <!-- More reviews can be added similarly -->
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-xl font-bold text-primary">Reviews</h2>
+                        <button
+                            class="bg-primary text-white px-4 py-2 rounded-full hover:bg-primary-light transition duration-300">
+                            Add Review
+                        </button>
+                    </div>
+                    <div id="reviews-list" class="space-y-4">
+                        <!-- JavaScript will inject reviews here -->
+                    </div>
+
+                    <!-- View More Button -->
+                    <div class="mt-4 text-center">
+                        <button id="view-more-button"
+                            class="bg-primary text-white px-6 py-2 rounded-full hover:bg-primary-light transition duration-300">
+                            View More
+                        </button>
                     </div>
                 </div>
             </div>
@@ -134,15 +127,15 @@
                     <div class="space-y-3">
                         <div class="flex items-center text-text-secondary">
                             <span class="material-icons mr-2">phone</span>
-                            +94 77 123 4567
+                            <span id="contact-phone">Loading...</span>
                         </div>
                         <div class="flex items-center text-text-secondary">
                             <span class="material-icons mr-2">email</span>
-                            john@electricalservices.lk
+                            <span id="contact-email">Loading...</span>
                         </div>
                         <div class="flex items-center text-text-secondary">
                             <span class="material-icons mr-2">schedule</span>
-                            Available 24/7 for emergencies
+                            <span id="contact-hours">Loading...</span>
                         </div>
                     </div>
                 </div>
@@ -209,6 +202,7 @@
             </div>
         </div>
     </footer>
+    <script src="../js/viewprofile.js"></script>
 </body>
 
 </html>
