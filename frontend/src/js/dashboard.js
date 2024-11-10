@@ -117,16 +117,31 @@ async function handleServiceSubmit(e) {
         });
 
         if (response.ok) {
-            alert('Service added successfully!');
+            // alert('Service added successfully!');
+            Swal.fire({
+                title: "Service added successfully!",
+                // text: "That thing is still around?",
+                icon: "success"
+              });
             hideAddServiceModal();
             loadServices();
         } else {
             const error = await response.json();
-            alert(error.message || 'Error adding service');
+            // alert(error.message || 'Error adding service');
+            Swal.fire({
+                title: "Error adding service",
+                text: error.message,
+                icon: "warning"
+              });
         }
     } catch (error) {
         console.error('Error adding service:', error);
-        alert('Error adding service. Please try again.');
+        // alert('Error adding service. Please try again.');
+        Swal.fire({
+            title: "Error adding service. Please try again.",
+            // text: "That thing is still around?",
+            icon: "question"
+          });
     }
 }
 

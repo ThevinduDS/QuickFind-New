@@ -15,7 +15,12 @@ async function fetchFavourite() {
         renderFavourite(favourite);
     } catch (error) {
         console.error('Failed to fetch favourite:', error);
-        alert('No Items Found');
+        // alert('No Items Found');
+        Swal.fire({
+            title: "No Items Found",
+            // text: "That thing is still around?",
+            icon: "warning"
+          });
     }
 }
 
@@ -84,12 +89,22 @@ async function removeFavourite(id) {
         if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
         const result = await response.json();
         console.log('Removed favourite:', result);
-        alert("Successfully removed from Favourite!");
+        // alert("Successfully removed from Favourite!");
+        Swal.fire({
+            title: "Successfully removed from Favourite!",
+            // text: "That thing is still around?",
+            icon: "success"
+          });
         
         fetchFavourite();  // Refresh the favourites list
     } catch (error) {
         console.error('Failed to remove favourite:', error);
-        alert('Failed to remove favorite. Please try again later.');
+        // alert('Failed to remove favorite. Please try again later.');
+        Swal.fire({
+            title: "Failed to remove favorite. Please try again later.",
+            // text: "That thing is still around?",
+            icon: "warning"
+          });
     }
 }
 

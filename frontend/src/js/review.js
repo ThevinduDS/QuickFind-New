@@ -38,13 +38,23 @@ document.addEventListener('DOMContentLoaded', () => {
         let userId = userDeatails.id; // user id
 
         if (selectedRating > 5){
-            alert("Rating must be between 1 and 5");
+            // alert("Rating must be between 1 and 5");
+            Swal.fire({
+                title: "The Internet?",
+                text: "That thing is still around?",
+                icon: "question"
+              });
             return;
         }
 
         // Validation: Ensure all required fields are filled
         if (!serviceProvider || selectedRating === 0 || !reviewText) {
-            alert('Please fill in all fields, including the rating.');
+            // alert('Please fill in all fields, including the rating.');
+            Swal.fire({
+                title: "Please fill in all fields, including the rating.",
+                // text: "That thing is still around?",
+                icon: "warning"
+              });
             return;
         }
 
@@ -81,10 +91,16 @@ document.addEventListener('DOMContentLoaded', () => {
             stars.forEach(star => star.classList.remove('text-yellow-500'));
             stars.forEach(star => star.classList.add('text-gray-300'));
 
-            alert('Thank you for your review!');
+            // alert('Thank you for your review!');
+            Swal.fire("Thank you for your review!");
         } catch (error) {
             console.error('Error submitting review:', error);
-            alert('Error submitting review. Please try again.');
+            // alert('Error submitting review. Please try again.');
+            Swal.fire({
+                title: "Error submitting review. Please try again.",
+                // text: "That thing is still around?",
+                icon: "warning"
+              });
         }
     });
 });

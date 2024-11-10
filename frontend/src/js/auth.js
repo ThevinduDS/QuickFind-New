@@ -26,14 +26,29 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (response.ok) {
                     localStorage.setItem('token', data.token);
                     localStorage.setItem('user', JSON.stringify(data.user));
-                    alert('Login successful!');
+                    // alert('Login successful!');
+                    Swal.fire({
+                        title: "Login Succesfull",
+                        // text: "That thing is still around?",
+                        icon: "success"
+                      });
                     window.location.href = 'index.html';
                 } else {
-                    alert(data.message || 'Login failed');
+                    // alert(data.message || 'Login failed');
+                    Swal.fire({
+                        title: "Login failed!",
+                        text: data.message,
+                        icon: "warning"
+                      });
                 }
             } catch (error) {
                 console.error('Login error:', error);
-                alert('Login failed. Please try again.');
+                // alert('Login failed. Please try again.');
+                Swal.fire({
+                    title: "Login Failed!",
+                    text: "Please try Again Later.",
+                    icon: "warning"
+                  });
             }
         });
     }
@@ -52,7 +67,12 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('Signup attempt:', { firstName, lastName, email, phone, password, accountType }); // Log signup attempt
 
             if (password !== confirmPassword) {
-                alert("Passwords don't match!");
+                // alert("Passwords don't match!");
+                Swal.fire({
+                    title: "Passwords don't match!",
+                    text: "Please Recheck your Passwords.",
+                    icon: "warning"
+                  });
                 return;
             }
 
@@ -76,14 +96,29 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.log('Registration response:', data); // Log the response
 
                 if (response.ok) {
-                    alert('Registration successful! Please log in.');
+                    // alert('Registration successful! Please log in.');
+                    Swal.fire({
+                        title: "Registration successful!",
+                        text: "Please log in.",
+                        icon: "success"
+                      });
                     window.location.href = 'login.html';
                 } else {
-                    alert(data.message || 'Registration failed');
+                    // alert(data.message || 'Registration failed');
+                    Swal.fire({
+                        title: "Registration failed.",
+                        text: data.message,
+                        icon: "warning"
+                      });
                 }
             } catch (error) {
                 console.error('Registration error:', error);
-                alert('Registration failed. Please try again.');
+                // alert('Registration failed. Please try again.');
+                Swal.fire({
+                    title: "Registration failed. Please try again",
+                    // text: data.message,
+                    icon: "warning"
+                  });
             }
         });
     }
