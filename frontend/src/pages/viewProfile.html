@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +7,6 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-
     <script>
         tailwind.config = {
             theme: {
@@ -23,8 +21,21 @@
             }
         }
     </script>
+    <style>
+        @keyframes carousel {
+            0% { background-image: url('../icons/profileImage.jpg'); }
+            33% { background-image: url('../icons/carpenter.png'); }
+            66% { background-image: url('../icons/electrician.png'); }
+            100% { background-image: url('../icons/profileImage.jpg'); }
+        }
+        .animate-carousel {
+            animation: carousel 10s infinite;
+            background-size: cover;
+            background-position: center;
+            min-height: 300px;
+        }
+    </style>
 </head>
-
 <body class="bg-background font-sans">
     <header class="bg-primary text-white p-4">
         <div class="container mx-auto flex justify-between items-center">
@@ -40,12 +51,11 @@
     </header>
 
     <main class="container mx-auto mt-8 px-4">
-        <!-- Profile Header -->
-        <div class="bg-white rounded-lg shadow-md p-6 mb-6">
-            <div class="flex flex-col md:flex-row items-start md:items-center gap-6">
-                <img src="../icons/profileImage.jpg" alt="Provider Profile"
-                    class="rounded-full w-32 h-32 object-cover border-2 border-primary">
-                <div class="flex-grow">
+        <div class="bg-white rounded-lg shadow-md p-6 mb-6 flex flex-col md:flex-row items-center gap-6">
+            <div class="animate-carousel w-full md:w-1/3 h-80 rounded-lg"> </div>
+            <div class="flex md:w-2/3 flex-col lg:items-center items-center">
+                <img src="../icons/profileImage.jpg" alt="Provider Profile" class="rounded-full w-32 h-32 object-cover border-2 border-primary">
+                <div class="mt-4">
                     <h1 id="profile-name" class="text-3xl font-bold text-primary mb-2">Loading...</h1>
                     <div class="flex items-center mb-2">
                         <div class="text-yellow-400 mr-2">★★★★★</div>
@@ -56,12 +66,8 @@
                         <span id="profile-location">Loading location...</span>
                     </p>
                     <div class="flex gap-4 mt-4">
-                        <button
-                            class="bg-primary text-white px-6 py-2 rounded-full hover:bg-primary-light transition duration-300">
-                            Message
-                        </button>
-                        <button
-                            class="border border-primary text-primary px-6 py-2 rounded-full hover:bg-primary hover:text-white transition duration-300">
+                        <button class="bg-primary text-white px-6 py-2 rounded-full hover:bg-primary-light transition duration-300" onclick="window.location.href='message.html'">Message</button>
+                        <button class="border border-primary text-primary px-6 py-2 rounded-full hover:bg-primary hover:text-white transition duration-300">
                             <span class="material-icons text-sm align-middle mr-1">favorite_border</span>
                             Add to Favourite
                         </button>
@@ -70,58 +76,36 @@
             </div>
         </div>
 
-        <!-- Main Content Grid -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <!-- Left Column -->
             <div class="md:col-span-2 space-y-6">
-                <!-- About Section -->
                 <div class="bg-white rounded-lg shadow-md p-6">
                     <h2 class="text-xl font-bold text-primary mb-4">About</h2>
-                    <p id="description" class="text-text-secondary">Professional electrical services with over 15 years of experience.
-                        Specializing in residential and commercial electrical installations, repairs, and maintenance.
-                        Licensed and insured for your peace of mind.</p>
+                    <p id="description" class="text-text-secondary">Loading description...</p>
                 </div>
-
-                <!-- Services Offered Section -->
 
                 <div id="services-offered" class="bg-white rounded-lg shadow-md p-6">
                     <h2 class="text-xl font-bold text-primary mb-4">Services Offered</h2>
-                    <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <!-- JavaScript will inject services here -->
+                    <ul id="services-offered-list" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <li class="flex items-center text-text-secondary">
                             <span class="material-icons text-primary mr-2">check_circle</span>
-                            Electrical Installation
+                            Loading services...
                         </li>
                     </ul>
                 </div>
 
-
-                <!-- Reviews Section -->
                 <div class="bg-white rounded-lg shadow-md p-6">
                     <div class="flex justify-between items-center mb-4">
                         <h2 class="text-xl font-bold text-primary">Reviews</h2>
-                        <button
-                            class="bg-primary text-white px-4 py-2 rounded-full hover:bg-primary-light transition duration-300">
-                            Add Review
-                        </button>
+                        <button class="bg-primary text-white px-4 py-2 rounded-full hover:bg-primary-light transition duration-300">Add Review</button>
                     </div>
-                    <div id="reviews-list" class="space-y-4">
-                        <!-- JavaScript will inject reviews here -->
-                    </div>
-
-                    <!-- View More Button -->
+                    <div id="reviews-list" class="space-y-4"></div>
                     <div class="mt-4 text-center">
-                        <button id="view-more-button"
-                            class="bg-primary text-white px-6 py-2 rounded-full hover:bg-primary-light transition duration-300">
-                            View More
-                        </button>
+                        <button id="view-more-button" class="bg-primary text-white px-6 py-2 rounded-full hover:bg-primary-light transition duration-300">View More</button>
                     </div>
                 </div>
             </div>
 
-            <!-- Right Column -->
             <div class="space-y-6">
-                <!-- Contact Information -->
                 <div class="bg-white rounded-lg shadow-md p-6">
                     <h2 class="text-xl font-bold text-primary mb-4">Contact Information</h2>
                     <div class="space-y-3">
@@ -140,7 +124,6 @@
                     </div>
                 </div>
 
-                <!-- Business Hours -->
                 <div class="bg-white rounded-lg shadow-md p-6">
                     <h2 class="text-xl font-bold text-primary mb-4">Business Hours</h2>
                     <div class="space-y-2 text-text-secondary">
@@ -181,28 +164,20 @@
                 <div>
                     <h5 class="font-bold mb-4">For Providers</h5>
                     <ul class="space-y-2">
-                        <li><a href="#" class="hover:text-primary-light transition duration-300">Join Us</a></li>
-                        <li><a href="#" class="hover:text-primary-light transition duration-300">FAQs</a></li>
+                        <li><a href="#" class="hover:text-primary-light transition duration-300">Join as a Provider</a></li>
+                        <li><a href="#" class="hover:text-primary-light transition duration-300">Provider Login</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h5 class="font-bold mb-4">Follow Us</h5>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-white hover:text-primary-light transition duration-300">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="text-white hover:text-primary-light transition duration-300">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="#" class="text-white hover:text-primary-light transition duration-300">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                    </div>
+                    <h5 class="font-bold mb-4">Contact Us</h5>
+                    <p class="text-sm">123 Main Street, Colombo, Sri Lanka</p>
+                    <p class="text-sm">+94 123 456 789</p>
+                    <p class="text-sm">info@quickfind.lk</p>
                 </div>
             </div>
         </div>
     </footer>
+
     <script src="../js/viewprofile.js"></script>
 </body>
-
 </html>

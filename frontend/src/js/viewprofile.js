@@ -86,3 +86,13 @@ updateServices(data.service.Category.name || 'Category not available');
         console.error("Error loading profile data:", error);
     }
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Simulate data loading
+    document.getElementById('profile-name').textContent = "John Doe";
+    document.getElementById('profile-rating').textContent = "4.5 (120 reviews)";
+    document.getElementById('profile-location').textContent = "Colombo, Sri Lanka";
+    document.getElementById('contact-phone').textContent = "+94 123 456 789";
+    document.getElementById('contact-email').textContent = "john.doe@email.com";
+    document.getElementById('contact-hours').textContent = "Mon - Fri: 8AM - 6PM, Sat: 9AM - 4PM, Sun: Closed";
+});

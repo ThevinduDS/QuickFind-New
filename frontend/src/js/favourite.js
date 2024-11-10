@@ -57,21 +57,21 @@ function renderFavourite(favourite) {
     
 }
 
-async function addFavourite(id) {
-    try {
-        const response = await fetch('http://localhost:3000/api/favourite/add', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ id , userId , serviceId })
-        });
-        if (!response.ok) throw new Error((await response.json()).message || 'Failed to add favourite');
-        const newFavourite = await response.json();
-        console.log('Added favourite:', newFavourite);
-        fetchFavourite();
-    } catch (error) {
-        console.error('Failed to add favourite:', error);
-    }
-}
+// async function addFavourite(id) {
+//     try {
+//         const response = await fetch('http://localhost:3000/api/favourite/add', {
+//             method: 'POST',
+//             headers: { 'Content-Type': 'application/json' },
+//             body: JSON.stringify({ id , userId , serviceId })
+//         });
+//         if (!response.ok) throw new Error((await response.json()).message || 'Failed to add favourite');
+//         const newFavourite = await response.json();
+//         console.log('Added favourite:', newFavourite);
+//         fetchFavourite();
+//     } catch (error) {
+//         console.error('Failed to add favourite:', error);
+//     }
+// }
 
 async function removeFavourite(id) {
     try {
