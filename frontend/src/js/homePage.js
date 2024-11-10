@@ -44,3 +44,44 @@ document.addEventListener("DOMContentLoaded", async () => {
         console.error("Error fetching early providers:", error);
     }
 });
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    
+    const navLinks = document.getElementById('nav-links');
+    const token = localStorage.getItem('token');
+    const user = JSON.parse(localStorage.getItem('user')) || {};
+
+    if (token) {
+        // If logged in, show profile link with the profile picture
+        const profileLink = document.createElement('a');
+        profileLink.href = "/profile";
+        profileLink.className = "flex items-center space-x-2 hover:text-primary-light transition duration-300";
+        
+        const profileImage = document.createElement('img');
+        profileImage.src = user.profileImageUrl || "path/to/default-image.jpg";  // Replace with actual image URL or default
+        profileImage.alt = "Profile Picture";
+        profileImage.className = "w-8 h-8 rounded-full border";
+
+        const profileText = document.createElement('span');
+        profileText.textContent = "Profile";
+        
+        profileLink.appendChild(profileImage);
+        profileLink.appendChild(profileText);
+        navLinks.appendChild(profileLink);
+    } else {
+        // If not logged in, show Login and Signup links
+        const loginLink = document.createElement('a');
+        loginLink.href = "/signin";
+        loginLink.className = "hover:text-primary-light transition duration-300";
+        loginLink.textContent = "Login";
+
+        const signupLink = document.createElement('a');
+        signupLink.href = "/signup";
+        signupLink.className = "hover:text-primary-light transition duration-300";
+        signupLink.textContent = "Sign Up";
+
+        navLinks.appendChild(loginLink);
+        navLinks.appendChild(signupLink);
+    }
+});

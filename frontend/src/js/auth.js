@@ -1,16 +1,16 @@
 // frontend/src/js/auth.js
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const loginForm = document.getElementById('loginForm');
     const signupForm = document.getElementById('signupForm');
 
     if (loginForm) {
-        loginForm.addEventListener('submit', async function(e) {
+        loginForm.addEventListener('submit', async function (e) {
             e.preventDefault();
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
 
             console.log('Login attempt:', { email, password }); // Log login attempt
-            
+
             try {
                 const response = await fetch('http://localhost:3000/api/auth/login', {
                     method: 'POST',
@@ -28,9 +28,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     localStorage.setItem('user', JSON.stringify(data.user));
                     // alert(JSON.stringify(data));
                     alert('Login successful!');
-                    if(data.user.role == "customer"){
-window.location.href = '../index.html'
-                    }else if(data.user.role == "service_provider"){
+                    if (data.user.role == "customer") {
+                        window.location.href = '../index.html'
+                    } else if (data.user.role == "service_provider") {
                         window.location.href = '../provider-dashboard.html'
 
                     }
@@ -46,7 +46,7 @@ window.location.href = '../index.html'
     }
 
     if (signupForm) {
-        signupForm.addEventListener('submit', async function(e) {
+        signupForm.addEventListener('submit', async function (e) {
             e.preventDefault();
             const firstName = document.getElementById('firstName').value;
             const lastName = document.getElementById('lastName').value;

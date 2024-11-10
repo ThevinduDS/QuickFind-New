@@ -14,6 +14,7 @@ const favouriteRoutes = require('./routes/favourite.routes')
 const homePageRoutes = require("./routes/homePage.routes");
 const viewprofileRoutes = require('./routes/viewprofile.routes');
 const reviewRoutes = require('./routes/review.routes');
+const userProfileRoutes = require('./routes/userProfile.routes');
 
 
 require('./models/associations');
@@ -39,6 +40,7 @@ app.use('/api/favourite', favouriteRoutes);
 app.use("/api/homepage", homePageRoutes);
 app.use('/api/viewprofile', viewprofileRoutes);
 app.use('/api/review', reviewRoutes);
+app.use('/api/user', userProfileRoutes);
 
 
 

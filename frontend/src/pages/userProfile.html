@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,7 +32,7 @@
                 <img src="../icons/quickfind logo .png" style="height:50px;" alt="QuickFind.LK Logo">
             </a>
             <nav>
-                <a href="./index.html" class="hover:text-primary-light transition duration-300 mr-4">Home</a>
+                <a href="/" class="hover:text-primary-light transition duration-300 mr-4">Home</a>
                 <a href="/services" class="hover:text-primary-light transition duration-300 mr-4">Services</a>
                 <a href="/profile" class="hover:text-primary-light transition duration-300">Profile</a>
             </nav>
@@ -41,33 +42,44 @@
     <main class="container mx-auto mt-8 px-4">
         <!-- Profile Header -->
         <div class="bg-white rounded-lg shadow-md p-6 mb-6">
-            <div class="flex flex-col md:flex-row items-start md:items-center gap-6">
-                <img src="../icons/customer-profile.jpg" alt="Customer Profile" class="rounded-full w-32 h-32 object-cover border-2 border-primary">
+            <div class="flex flex-col md:flex-row items-start md:items-center gap-6 profile">
+                <img src="" alt="Customer Profile"
+                    class="rounded-full w-32 h-32 object-cover border-2 border-primary profile-image">
                 <div class="flex-grow">
-                    <h1 class="text-3xl font-bold text-primary mb-2">John Doe</h1>
+                    <h1 class="text-3xl font-bold text-primary mb-2 profile-name"></h1>
                     <p class="text-text-secondary mb-2">
                         <span class="material-icons text-sm align-middle mr-1">location_on</span>
-                        Colombo, Sri Lanka
+                        <span class="profile-location"></span>
                     </p>
                     <p class="text-text-secondary">
                         <span class="material-icons text-sm align-middle mr-1">email</span>
-                        john.doe@example.com
+                        <span class="profile-email"></span>
                     </p>
                     <p class="text-text-secondary">
                         <span class="material-icons text-sm align-middle mr-1">phone</span>
-                        +94 77 123 4567
+                        <span class="profile-phone"></span>
                     </p>
                 </div>
-                <div class="flex gap-4">
-                    <button class="bg-primary text-white px-6 py-2 rounded-full hover:bg-primary-light transition duration-300">
-                        Edit Profile
-                    </button>
+                <div class="flex gap-4 items-center">
+                    <!-- Profile Edit Form -->
+                    <form id="userProfile" class="flex items-center">
+                        <input type="file" id="profileImage" hidden>
+                
+                        <!-- Label as button to trigger the file input -->
+                        <label for="profileImage"
+                            class="bg-primary text-white px-6 py-2 rounded-full hover:bg-primary-light transition duration-300 cursor-pointer">
+                            Edit Profile
+                        </label>
+                    </form>
+                
                     <!-- Message Button -->
-                    <a href="/messages" class="bg-primary-light text-white px-6 py-2 rounded-full hover:bg-primary transition duration-300">
+                    <a href="/messages"
+                        class="bg-primary-light text-white px-6 py-2 rounded-full hover:bg-primary transition duration-300">
                         <span class="material-icons align-middle mr-1">message</span>
                         Message
                     </a>
                 </div>
+                
             </div>
         </div>
 
@@ -78,8 +90,9 @@
                 <!-- Account Information -->
                 <div class="bg-white rounded-lg shadow-md p-6">
                     <h2 class="text-xl font-bold text-primary mb-4">Account Information</h2>
-                    <p class="text-text-secondary">Account Type: Customer</p>
-                    <p class="text-text-secondary">Status: Active</p>
+                    <p class="text-text-secondary">Account type: <span class="text-text-secondary profile-role"></span>
+                    </p>
+                    <p class="text-text-secondary">Status: <span class="text-text-secondary profile-status"></span></p>
                 </div>
 
                 <!-- Recent Activity Section -->
@@ -94,7 +107,6 @@
                             <span class="material-icons text-primary mr-2">history</span>
                             Favorited "John's Electrical Services" on 28th October 2024
                         </li>
-                        <!-- More activity logs can be added here -->
                     </ul>
                 </div>
             </div>
@@ -105,7 +117,8 @@
                 <div class="bg-white rounded-lg shadow-md p-6">
                     <h2 class="text-xl font-bold text-primary mb-4">Need Help?</h2>
                     <p class="text-text-secondary mb-4">If you have any issues or need support, please contact us.</p>
-                    <button class="bg-primary text-white px-6 py-2 rounded-full hover:bg-primary-light transition duration-300">
+                    <button
+                        class="bg-primary text-white px-6 py-2 rounded-full hover:bg-primary-light transition duration-300">
                         Contact Support
                     </button>
                 </div>
@@ -114,10 +127,12 @@
                 <div class="bg-white rounded-lg shadow-md p-6">
                     <h2 class="text-xl font-bold text-primary mb-4">Account Settings</h2>
                     <div class="space-y-4">
-                        <button class="w-full bg-primary text-white px-6 py-2 rounded-full hover:bg-primary-light transition duration-300">
+                        <button
+                            class="w-full bg-primary text-white px-6 py-2 rounded-full hover:bg-primary-light transition duration-300">
                             Change Password
                         </button>
-                        <button class="w-full border border-primary text-primary px-6 py-2 rounded-full hover:bg-primary hover:text-white transition duration-300">
+                        <button
+                            class="w-full border border-primary text-primary px-6 py-2 rounded-full hover:bg-primary hover:text-white transition duration-300">
                             Log Out
                         </button>
                     </div>
@@ -166,5 +181,8 @@
             </div>
         </div>
     </footer>
+
+    <script src="../js/userProfile.js"></script>
 </body>
+
 </html>
