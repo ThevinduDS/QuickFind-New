@@ -1,6 +1,7 @@
 // associations.js
 const User = require('./user.model');
 const Service = require('./service.model');
+const ServiceImage = require('./ServiceImage.model');
 const Category = require('./category.model');
 const Review = require('./review.model');
 const Transaction = require('./transaction.model');
@@ -16,6 +17,10 @@ const Favourite = require('./favourite.model');
 // User - Service (Provider)
 User.hasMany(Service, { foreignKey: 'providerId', as: 'services' });
 Service.belongsTo(User, { foreignKey: 'providerId', as: 'provider' });
+
+// Service - ServiceImage (one-to-many)
+Service.hasMany(ServiceImage, { foreignKey: 'serviceId', as: 'images' });
+ServiceImage.belongsTo(Service, { foreignKey: 'serviceId' });
 
 // Service - Category (by categoryId)
 Category.hasMany(Service, { foreignKey: 'categoryId' });
@@ -68,6 +73,7 @@ Favourite.belongsTo(Service, { foreignKey: 'serviceId' });
 module.exports = {
     User,
     Service,
+    ServiceImage,
     Category,
     Review,
     Transaction,
