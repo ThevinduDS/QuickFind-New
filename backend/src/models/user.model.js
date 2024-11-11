@@ -41,7 +41,7 @@ const User = sequelize.define('User', {
     },
     photoURL: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
 }, {
     timestamps: true

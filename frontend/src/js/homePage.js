@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             providerCard.innerHTML = `
           <div class="bg-white shadow-md rounded-lg overflow-hidden transform transition duration-300 hover:scale-105">
             <!-- Image section -->
-            <img src="../../../backend/${provider.images}" alt="${provider.title}" class="w-full h-48 lg:h-64 object-cover rounded-t-lg lg:rounded-lg mb-4 lg:mb-0 lg:mr-6">
+            <img src="../backend/${provider.images}" alt="${provider.title}" class="w-full h-48 lg:h-64 object-cover rounded-t-lg lg:rounded-lg mb-4 lg:mb-0 lg:mr-6">
             
             <!-- Content section -->
             <div class="flex flex-col justify-between flex-1 p-4">
@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 
                 <!-- Buttons section -->
                 <div class="flex justify-between items-center mt-4">
-                    <a href="#" class="text-primary hover:text-primary-light transition duration-300">View Profile</a>
+                    <a href="./viewProfile.html?serviceId=${encodeURIComponent(provider.id)}" class="text-primary hover:text-primary-light transition duration-300">View Profile</a>
                     <button class="bg-primary text-white py-2 px-4 rounded-lg hover:bg-primary-dark transition duration-300" onclick="addFavourite('${provider.id}')">Add to Favourite</button>
                 </div>
             </div>

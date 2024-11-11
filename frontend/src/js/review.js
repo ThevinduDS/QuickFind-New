@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
         event.preventDefault(); // Prevent the default form submission
 
         // Collect form data
-        const serviceProvider = document.getElementById('serviceProvider').value;
+        const serviceProvider = getProviderIdFromUrl() ;
         const reviewText = document.getElementById('reviewText').value;
 
         var userData = localStorage.getItem('user');
@@ -60,10 +60,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Form data to send to the server
         const reviewData = {
-            serviceProvider,
-            rating: selectedRating,
-            reviewText,
-            userId
+            service_id: serviceProvider, 
+            rating_score: selectedRating, 
+            comment: reviewText,          
+            user_id: userId              
         };
 
         try {
@@ -104,6 +104,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+function getProviderIdFromUrl() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const encodedId = urlParams.get('providerId');
+    return decodeURIComponent(encodedId); // Decode the provider_id parameter from URL
+}
 
 
    

@@ -4,71 +4,45 @@ const Review = require('../models/review.model');
 const Rating = require('../models/rating.model');
 const { Op } = require('sequelize');
 
-// Add a review and update rating
 exports.addReview = async (req, res) => {
     const { service_id, user_id, rating_score, comment } = req.body;
 
-    // Validate input
     if (!service_id || !user_id || !rating_score || !comment) {
         return res.status(400).json({ message: 'All fields are required!' });
     }
 
-    // Check if the service exists
-    const service = await Service.findOne({
-        where: { id: service_id }
-    });
-
-    if (!service) {
-        return res.status(404).json({ message: "Service not found!" });
-    }
-
-    // Check if the user has already reviewed the service
-    const review = await Review.findOne({
-        where: { serviceId:service_id , userId: user_id }
-    });
-    if (review) {
-        return res.status(400).json({ message: "You have already reviewed this service!" });
-    }
-
-
-
     try {
-        // Check if the service exists
         const service = await Service.findOne({ where: { id: service_id } });
+        if (!service) return res.status(404).json({ message: "Service not found!" });
 
-        if (!service) {
-            return res.status(404).send("Service not found!");
-        }
+        // const existingReview = await Review.findOne({
+        //     where: { serviceId: service_id, userId: user_id }
+        // });
+        // if (existingReview) {
+        //     return res.status(400).json({ message: "You have already reviewed this service!" });
+        // }
 
-        const serviceprovider_id = service_id;
-
-        // Create a new review
         const review = await Review.create({
-            serviceId,
-            userId,
-            ratingScore,
+            serviceId: service_id,
+            userId: user_id,
+            ratingScore: rating_score,
             comment
         });
 
-        // Update the rating for the service provider
-        const rating = await Rating.findOne({ where: { serviceId } });
+        const rating = await Rating.findOne({ where: { serviceId: service_id } });
 
         if (rating) {
-            // If the rating exists, update it
             const newReviewCount = rating.reviewCount + 1;
             const newRatingScore = (rating.ratingScore * rating.reviewCount + rating_score) / newReviewCount;
-
-            // Format the newRatingScore to 1 decimal place
             const formattedRatingScore = parseFloat(newRatingScore.toFixed(1));
 
             await Rating.update(
-                { ratingscore: formattedRatingScore, reviewCount: newReviewCount },
-                { where: { serviceId } }
+                { ratingScore: formattedRatingScore, reviewCount: newReviewCount },
+                { where: { serviceId: service_id } }
             );
         } else {
-            // If the rating doesn't exist, create it
             await Rating.create({
-                serviceId,
+                serviceId: service_id,
                 ratingScore: rating_score,
                 reviewCount: 1
             });
