@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 
                 <!-- Buttons section -->
                 <div class="flex justify-between items-center mt-4">
-                    <a href="#" class="text-primary hover:text-primary-light transition duration-300">View Profile</a>
+                    <a href="./viewProfile.html?serviceId=${encodeURIComponent(provider.id)}" class="text-primary hover:text-primary-light transition duration-300">View Profile</a>
                     <button class="bg-primary text-white py-2 px-4 rounded-lg hover:bg-primary-dark transition duration-300" onclick="addFavourite('${provider.id}')">Add to Favourite</button>
                 </div>
             </div>

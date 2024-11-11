@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", async () => {
     try {
-        const serviceId = '770c639c-113d-45aa-b626-eefcd6d600c6'; // Replace with dynamic ID if needed
+        const serviceId = getProviderIdFromUrl(); // Replace with dynamic ID if needed
 
         // Function to fetch profile information
         async function loadProfile() {
@@ -87,12 +87,9 @@ updateServices(data.service.Category.name || 'Category not available');
     }
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-    // Simulate data loading
-    document.getElementById('profile-name').textContent = "John Doe";
-    document.getElementById('profile-rating').textContent = "4.5 (120 reviews)";
-    document.getElementById('profile-location').textContent = "Colombo, Sri Lanka";
-    document.getElementById('contact-phone').textContent = "+94 123 456 789";
-    document.getElementById('contact-email').textContent = "john.doe@email.com";
-    document.getElementById('contact-hours').textContent = "Mon - Fri: 8AM - 6PM, Sat: 9AM - 4PM, Sun: Closed";
-});
+
+function getProviderIdFromUrl() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const encodedId = urlParams.get('serviceId');
+    return decodeURIComponent(encodedId); // Decode the provider_id parameter from URL
+}
