@@ -105,6 +105,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+function getProviderIdFromUrl() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const encodedId = urlParams.get('providerId');
+    return decodeURIComponent(encodedId); // Decode the provider_id parameter from URL
+}
+
 
    
 

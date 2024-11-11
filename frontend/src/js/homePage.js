@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             providerCard.innerHTML = `
           <div class="bg-white shadow-md rounded-lg overflow-hidden transform transition duration-300 hover:scale-105">
             <!-- Image section -->
-            <img src="../../../backend/${provider.images}" alt="${provider.title}" class="w-full h-48 lg:h-64 object-cover rounded-t-lg lg:rounded-lg mb-4 lg:mb-0 lg:mr-6">
+            <img src="../backend/${provider.images}" alt="${provider.title}" class="w-full h-48 lg:h-64 object-cover rounded-t-lg lg:rounded-lg mb-4 lg:mb-0 lg:mr-6">
             
             <!-- Content section -->
             <div class="flex flex-col justify-between flex-1 p-4">

@@ -93,3 +93,25 @@ function getProviderIdFromUrl() {
     const encodedId = urlParams.get('serviceId');
     return decodeURIComponent(encodedId); // Decode the provider_id parameter from URL
 }
+
+function getUserId(){
+    
+    var userData = localStorage.getItem('user');
+    var userDeatails = JSON.parse(userData);
+    let userId = userDeatails.id;
+    return userId;
+}
+
+function addReview() {
+    const pid = getProviderIdFromUrl();
+    const uid = getUserId();
+
+    if (pid && uid) {
+        // Encode pid and uid, then construct the URL for review.html
+        const encodedPid = encodeURIComponent(pid);
+        // const encodedUid = encodeURIComponent(uid);
+        window.location.href = `./addReview.html?providerId=${encodedPid}`;
+    } else {
+        console.error("Provider ID is missing");
+    }
+}
