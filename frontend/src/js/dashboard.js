@@ -77,25 +77,51 @@ function hideAddServiceModal() {
     document.getElementById('addServiceModal').classList.add('hidden');
 }
 
+// frontend/src/js/dashboard.js
+document.addEventListener('DOMContentLoaded', () => {
+    const serviceForm = document.getElementById('serviceForm');
+    if (serviceForm) {
+        serviceForm.addEventListener('submit', handleServiceSubmit);
+    }
+});
+
 async function handleServiceSubmit(e) {
     e.preventDefault();
     const token = localStorage.getItem('token');
     const formData = new FormData();
 
     // Get form data
+    const titleElement = document.getElementById('serviceTitle');
+    const descriptionElement = document.getElementById('serviceDescription');
+    // Add similar checks for each element
+
+    if (!titleElement || !descriptionElement) {
+        console.error("Some required elements are missing in the HTML.");
+        Swal.fire({
+            title: "Form Error",
+            text: "Please check if all required fields are filled.",
+            icon: "warning"
+        });
+        return;
+    }
+
     const serviceData = {
-        title: document.getElementById('serviceTitle').value,
-        description: document.getElementById('serviceDescription').value,
+        title: titleElement.value,
+        description: descriptionElement.value,
         category: document.getElementById('serviceCategory').value,
         price: document.getElementById('servicePrice').value,
         priceType: document.getElementById('servicePriceType').value,
         serviceArea: document.getElementById('serviceArea').value,
+        location: document.getElementById('serviceLocation').value,
         workingHours: {
             start: document.getElementById('workingHoursStart').value,
             end: document.getElementById('workingHoursEnd').value
         },
-        availableDays: Array.from(document.querySelectorAll('input[name="availableDays"]:checked'))
-            .map(cb => cb.value)
+        availableDays: Array.from(document.querySelectorAll('input[name="availableDays"]:checked')).map(cb => cb.value),
+        contactNumber: document.getElementById('serviceContactNumber').value,
+        contactEmail: document.getElementById('serviceContactEmail').value,
+        providerId: JSON.parse(localStorage.getItem('user')).id,
+        categoryId: document.getElementById('serviceCategory').value
     };
 
     // Append service data
@@ -108,7 +134,7 @@ async function handleServiceSubmit(e) {
     }
 
     try {
-        const response = await fetch('http://localhost:3000/api/provider/services', {
+        const response = await fetch('http://127.0.0.1:3000/api/services', {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${token}`
@@ -116,34 +142,32 @@ async function handleServiceSubmit(e) {
             body: formData
         });
 
+        console.log(response);
+
         if (response.ok) {
-            // alert('Service added successfully!');
             Swal.fire({
                 title: "Service added successfully!",
-                // text: "That thing is still around?",
                 icon: "success"
-              });
+            });
             hideAddServiceModal();
             loadServices();
         } else {
             const error = await response.json();
-            // alert(error.message || 'Error adding service');
             Swal.fire({
                 title: "Error adding service",
                 text: error.message,
                 icon: "warning"
-              });
+            });
         }
     } catch (error) {
         console.error('Error adding service:', error);
-        // alert('Error adding service. Please try again.');
         Swal.fire({
             title: "Error adding service. Please try again.",
-            // text: "That thing is still around?",
             icon: "question"
-          });
+        });
     }
 }
+
 
 // Event Listeners
 function setupEventListeners() {

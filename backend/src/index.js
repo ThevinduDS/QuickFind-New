@@ -10,12 +10,12 @@ const messageRoutes = require('./routes/message.routes');
 const serviceRoutes = require('./routes/search.routes');
 const categoryRoutes = require('./routes/category.routes');
 const offeringRoutes = require('./routes/offering.routes');
-const favouriteRoutes = require('./routes/favourite.routes')
+const favouriteRoutes = require('./routes/favourite.routes');
 const homePageRoutes = require("./routes/homePage.routes");
 const viewprofileRoutes = require('./routes/viewprofile.routes');
 const reviewRoutes = require('./routes/review.routes');
 const userProfileRoutes = require('./routes/userProfile.routes');
-
+const addServiceRoutes = require('./routes/AddService.routes'); // Import AddService routes
 
 require('./models/associations');
 
@@ -29,11 +29,8 @@ app.use(helmet());
 app.use(morgan('dev'));
 app.use(express.json());
 
-
-
 // Routes
 app.use('/api/auth', authRoutes);
-// app.use('/search', searchRoutes); // Handles search result page navigation
 app.use('/messages', messageRoutes);
 app.use('/api/categories', categoryRoutes);
 app.use('/api/offering', offeringRoutes);
@@ -43,8 +40,7 @@ app.use("/api/homepage", homePageRoutes);
 app.use('/api/viewprofile', viewprofileRoutes);
 app.use('/api/review', reviewRoutes);
 app.use('/api/user', userProfileRoutes);
-
-
+app.use('/api', addServiceRoutes); // Route for adding services with image upload
 
 // Example route
 app.post('/messages/send', (req, res) => {
