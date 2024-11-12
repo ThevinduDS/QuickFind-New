@@ -20,7 +20,7 @@ exports.createService = async (req, res) => {
 
         // Destructure fields from parsed `serviceData`
         const { title, description, price, priceType, serviceArea, workingHours, availableDays, contactNumber, contactEmail, providerId, categoryId, location } = serviceData;
-n/ 
+
         // Validate required fields
         if (!title || !description || !price || !priceType || !serviceArea || !workingHours || !availableDays || !contactNumber || !contactEmail || !providerId || !categoryId || !location) {
             return res.status(400).json({ message: 'Missing required fields' });
